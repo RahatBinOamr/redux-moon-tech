@@ -1,9 +1,10 @@
-import { actionType, LOAD_PRODUCT } from "../ActionType/actionType";
+import { actionType, ADD_PRODUCT, LOAD_PRODUCT, REMOVE_PRODUCT } from "../ActionType/actionType";
 
-const initialstate = {
+const initialState = {
   cart: [],
+  products:[]
 };
-const ProductsReducer = (state = initialstate, action) => {
+const ProductsReducer = (state = initialState, action) => {
   const selectedProduct = state.cart.find(
     (product) => product._id === action.payload._id
   );
@@ -14,6 +15,18 @@ const ProductsReducer = (state = initialstate, action) => {
         ...state,
         products:action.payload,
       }
+      case ADD_PRODUCT:
+        return {
+          ...state,
+          products: [...state.products, action.payload],
+        };
+        case REMOVE_PRODUCT:
+          return {
+            ...state,
+            products: state.products.filter(
+              (product) => product._id !== action.payload
+            ),
+          };
     case actionType.ADD_TO_CART:
       if (selectedProduct) {
         const newCart = state.cart.filter(

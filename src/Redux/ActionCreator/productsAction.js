@@ -1,4 +1,4 @@
-import { actionType, ADD_PRODUCT, LOAD_PRODUCT } from "../ActionType/actionType"
+import { actionType, ADD_PRODUCT, LOAD_PRODUCT, REMOVE_PRODUCT } from "../ActionType/actionType"
 
 export const loadProduct = (data)=>{
     console.log(data);
@@ -7,12 +7,19 @@ export const loadProduct = (data)=>{
         payload:data,
     }
 }
-/* export const addProduct = (product)=>{
+
+  export const removeProduct = (id) => {
+    return {
+      type: REMOVE_PRODUCT,
+      payload: id,
+    };
+  };
+export const addProduct = (product)=>{
     return {
         type:ADD_PRODUCT,
         payload: product
     }
-} */
+}
 export const addToCart = (product)=>{
 return {
     type:actionType.ADD_TO_CART,

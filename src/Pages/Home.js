@@ -7,8 +7,10 @@ import loadProductData from "../Redux/THUNK/Products/fetchProducts";
 
 const Home = () => {
   const filters = useSelector(state=>state.filter.filters);
-  const products = useSelector((state) =>state.product.products);
-  console.log(products);
+  // const products = useSelector((state) =>console.log(state,"hello"));
+
+  const products = useSelector((state) =>state?.product.products);
+  console.log(products,"a");
   const {brands, stock}= filters;
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,6 +28,7 @@ const Home = () => {
       <ProductCard key={product.model} product={product} />
     ));
   }
+
 
   if (products.length && (stock || brands.length)) {
     content = products
